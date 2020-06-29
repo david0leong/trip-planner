@@ -38,4 +38,9 @@ class Country
   def to_json(*_args)
     as_json.to_json
   end
+
+  def in_boundary?(boundary)
+    latitude.between?(boundary[:min_latitude], boundary[:max_latitude]) &&
+      longitude.between?(boundary[:min_longitude], boundary[:max_longitude])
+  end
 end
