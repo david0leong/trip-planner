@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::CountriesController < ApplicationController
+  before_action :authenticate
+
   def show
     country_response = api_client.country(code_params[:code].downcase)[1][0]
     country = Country.new country_response
