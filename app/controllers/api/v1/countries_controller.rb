@@ -18,6 +18,20 @@ class Api::V1::CountriesController < ApplicationController
     capitals = FindCapitalsInBoundary.call(countries, clean_boundary_params)
 
     render json: capitals.map(&:as_json)
+  rescue StandardError => e
+    render json: { error: e.to_s }, status: :unprocessable_entity
+  end
+
+  def visit
+    validate_visit_params!
+
+    countries_response = api_client.countries[1]
+    countries = FilterCountries.call(countries_response)
+    path = VisitCapitals.call(countries, visit_params[:capitals])
+
+    render json: path
+  rescue StandardError => e
+    render json: { error: e.to_s }, status: :unprocessable_entity
   end
 
   private
@@ -46,5 +60,13 @@ class Api::V1::CountriesController < ApplicationController
       .to_h
       .transform_values(&:to_f)
       .deep_symbolize_keys
+  end
+
+  def visit_params
+    params.permit(capitals: [])
+  end
+
+  def validate_visit_params!
+    raise 'Please provide 4 capitals' if visit_params[:capitals].size != 4
   end
 end

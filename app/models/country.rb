@@ -8,6 +8,12 @@ class Country
                 :capital,
                 :latitude,
                 :longitude
+  def self.distance(country1, country2)
+    Geocoder::Calculations.distance_between(
+      [country1.latitude, country1.longitude],
+      [country2.latitude, country2.longitude]
+    )
+  end
 
   def initialize(data = {})
     symbolized_data = data.deep_symbolize_keys

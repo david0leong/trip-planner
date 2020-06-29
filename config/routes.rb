@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'countries/:code' => 'countries#show', :constraints => { code: /[a-z]{3}/i }
       get 'countries/capitals' => 'countries#capitals'
+      get 'countries/visit' => 'countries#visit'
     end
   end
 end

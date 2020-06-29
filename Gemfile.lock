@@ -72,6 +72,7 @@ GEM
       faraday (>= 0.8)
     ffi (1.13.1)
     ffi (1.13.1-java)
+    geocoder (1.6.3)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.3)
@@ -189,6 +190,7 @@ DEPENDENCIES
   byebug
   faraday
   faraday-http-cache
+  geocoder
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
