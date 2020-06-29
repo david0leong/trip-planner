@@ -7,7 +7,8 @@ module WorldBankApi
 
       def initialize
         @client = Faraday.new(API_ENDPOINT) do |client|
-          client.use :http_cache, store: Rails.cache
+          # client.use :http_cache, store: Rails.cache
+          client.request :url_encoded
           client.adapter Faraday.default_adapter
           client.params[:format] = 'json'
         end
@@ -16,7 +17,8 @@ module WorldBankApi
       def countries
         request \
           http_method: :get,
-          endpoint: 'country'
+          endpoint: 'country',
+          params: { per_page: 400 }
       end
 
       def country(code)
