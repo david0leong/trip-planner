@@ -40,7 +40,19 @@ class Country
   end
 
   def in_boundary?(boundary)
-    latitude.between?(boundary[:min_latitude], boundary[:max_latitude]) &&
-      longitude.between?(boundary[:min_longitude], boundary[:max_longitude])
+    between_latitudes?(boundary[:min_latitude], boundary[:max_latitude]) &&
+      between_longitudes?(boundary[:min_longitude], boundary[:max_longitude])
+  end
+
+  def between_latitudes?(min, max)
+    latitude.between?(min, max)
+  end
+
+  def between_longitudes?(min, max)
+    if max < min
+      longitude.between?(min, 180) || longitude.between?(-180, max)
+    else
+      longitude.between?(min, max)
+    end
   end
 end
