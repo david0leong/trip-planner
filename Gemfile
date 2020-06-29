@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # 3rd Party Api client
 gem 'faraday'
+gem 'faraday-http-cache'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

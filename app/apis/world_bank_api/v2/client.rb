@@ -7,7 +7,7 @@ module WorldBankApi
 
       def initialize
         @client = Faraday.new(API_ENDPOINT) do |client|
-          # client.request :url_encoded
+          client.use :http_cache, store: Rails.cache
           client.adapter Faraday.default_adapter
           client.params[:format] = 'json'
         end

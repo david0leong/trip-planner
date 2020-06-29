@@ -67,6 +67,8 @@ GEM
     erubi (1.9.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
+    faraday-http-cache (2.2.0)
+      faraday (>= 0.8)
     ffi (1.13.1)
     ffi (1.13.1-java)
     globalid (0.4.2)
@@ -168,6 +170,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   faraday
+  faraday-http-cache
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
